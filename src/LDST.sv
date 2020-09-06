@@ -32,22 +32,25 @@ parameter AddrWidth = 15
     input [2:0]ieu_func3,
     input [1:0]ldst_check_stall,
     input [DataWidth-1:0]ieu_alu_result,
-    input [DataWidth-1:0]ldst_load_data_in,
+    input [DataWidth-1:0]ldst_load_data_in,  //used to read data
     input [DataWidth-1:0]ieu_mem_addr,
-    input [DataWidth-1:0]ieu_store_data,
+    input [DataWidth-1:0]ieu_store_data,     //data to be stored
     input [RegAddrWidth-1:0]ieu_addr_dst,
     input ieu_memtoreg,
+
+    inout logic  [DataWidth-1:0]ldst_dmem_data,     //communicate with memory
     
     output logic ldst_regfile_en,
     output logic ldst_resume,wb_resume,
     output logic [2:0]byte_en,
     output logic [AddrWidth-1:0]ldst_mem_addr,
     output logic [DataWidth-1:0]ldst_alu_result,
-    output logic [DataWidth-1:0]ldst_store_data,
+    output logic [DataWidth-1:0]ldst_store_data,  //used to store data
     output logic [DataWidth-1:0]ldst_load_data,
     output logic [RegAddrWidth-1:0]ldst_addr_dst,
     output logic ldst_memtoreg,
-    output logic ldst_stall
+    output logic ldst_stall,
+    output logic ldst_oen
  );
 logic mem_busy;
 logic [1:0]wb_check_stall;
@@ -59,14 +62,18 @@ logic [15:0]storing_half_byte;
 logic [DataWidth-1:0]wdata;
 logic [DataWidth-1:0]modified_wdata;
 logic unsigned_acces;
+logic misaligned_acces;
+logic [2:0]r_signals;  // in case of misaligned it reserved the memory controlling signal(oen,web,csb)  
 
-assign ldst_store_data = (ieu_func3 == 3'b010) ? ieu_store_data : {modified_wdata | ldst_load_data_in};
-assign storing_byte = ldst_store_data[7:0];
-assign storing_half_byte = ldst_store_data[15:0];
+//assign ldst_store_data = (ieu_func3 == 3'b010) ? ieu_store_data : {modified_wdata | ldst_load_data_in};
+assign ldst_dmem_data = (ieu_func3 == 3'b010) ? ieu_store_data : {modified_wdata | ldst_dmem_data};
+assign storing_byte = ldst_store_data[DataWidth-24:0];
+assign storing_half_byte = ldst_store_data[DataWidth-16:0];
 assign byte_sel = ieu_mem_addr[1:0];
 assign address = ieu_mem_addr>>2;
 assign ldst_mem_addr = address[AddrWidth-1:0];
 
+// setting byte_en to read/write perfectly
 always_comb begin
    if (ieu_func3 == 3'b000)begin //lb | sb
 	unsigned_acces = 1'b0;
@@ -116,9 +123,10 @@ end
 // *Remember only for sb and sh* 
 ///////////////////////////////////////
 
-always_comb begin 
+always_comb begin
+	misaligned_acces = 1'b1; 
 	modified_wdata = 'b0;
-     if (byte_en == 3'b011)  //sb
+     if (byte_en == 3'b011)  			//sb
           modified_wdata[31:24] <= storing_byte;
 else if (byte_en == 3'b010)
           modified_wdata[23:16] <= storing_byte;
@@ -126,7 +134,7 @@ else if (byte_en == 3'b001)
           modified_wdata[15:8] <= storing_byte;
 else if (byte_en == 3'b000)
           modified_wdata[7:0] <= storing_byte;
-else if (byte_en == 3'b100)  //sh
+else if (byte_en == 3'b100)  			//sh
           modified_wdata[31:16] <= storing_half_byte;
 else if (byte_en == 3'b101)
           modified_wdata[15:0] <= storing_half_byte;
@@ -148,12 +156,13 @@ always_comb begin
    else if (byte_en ==3'b101)
                 load_data = unsigned_acces ? {{16{wdata[31]}},wdata[31:16]} : {16'b0,wdata[31:16]}; 
    else if (byte_en ==3'b110)
-                load_data = wdata;  						//lw//
+                load_data = wdata;  								//lw//
 end
 
 assign wb_resume   = (wb_check_stall[1])   ? 1'b1 : 1'b0;
 assign ldst_resume = (ldst_check_stall[0]) ? 1'b1 : 1'b0;
-assign wdata       = ldst_load_data_in;
+//assign wdata       = ldst_load_data_in;
+assign wdata       = ldst_dmem_data;
 
 always @ (posedge brq_clk)begin
     if (brq_rst)begin

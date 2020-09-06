@@ -59,6 +59,17 @@ Buraq_RV32IM#(HalfWord,DataWidth,AddrWidth,RegAddrWidth)Core
         .reg_out(Reg_Out)
 );
 
+SRAM_32x16384_1P(DataWidth,AddrWidth)DCCM
+( 
+	.clk(brq_clk),
+	.DATA(),
+	.ADDR(),
+	.CSb(),             // active low chip select
+	.WEb(),             // active low write control
+	.OEb()             // active low output enable   
+);
+
+/*
 DCCM#(DataWidth,AddrWidth)DataMemory
 (
         .brq_clk(brq_clk),
@@ -70,6 +81,7 @@ DCCM#(DataWidth,AddrWidth)DataMemory
         //OUTPUT//
         .data_out(D_mem_out)
 );
+*/
 
 ICCM#(DataWidth,HalfWord,AddrWidth)InstructionMemory
 (

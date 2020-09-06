@@ -119,7 +119,7 @@ end
 ////////////////////////////////////////////////////////////////////////////
 always @(posedge brq_clk)begin
     if(brq_rst)begin
-        ieu_regfile_en    	    <= 1'b0;
+        ieu_regfile_en      <= 1'b0;
         ieu_addr_dst  	    <= 5'b0;
         ieu_mem_ren  	    <= 1'b0;
         ieu_mem_wen 	    <= 1'b0;
@@ -127,12 +127,12 @@ always @(posedge brq_clk)begin
         ieu_alu_result_dealy<= 32'd0;
         ieu_mem_addr	    <= 32'd0;
         ieu_store_data      <= 32'd0;
-        ieu_func3              <= 3'd0;
+        ieu_func3           <= 3'd0;
         check_stall_Out     <= 2'b0;
         ldst_resume         <= 1'b0;
     end
     else begin
-        ieu_regfile_en              <= idu_regfile_en;
+        ieu_regfile_en      <= idu_regfile_en;
         ieu_addr_dst 	    <= idu_addr_dst;
         ieu_mem_ren    	    <= idu_mem_ren;
         ieu_mem_wen  	    <= idu_mem_wen;
@@ -140,7 +140,7 @@ always @(posedge brq_clk)begin
         ieu_alu_result_dealy<= ieu_alu_result;
         ieu_mem_addr	    <= ieu_alu_result;
         ieu_store_data	    <= idu_store_data;
-        ieu_func3              <= idu_func3;
+        ieu_func3           <= idu_func3;
         ldst_resume         <= mem_busy;
         check_stall_Out     <= check_stall_In;
     end

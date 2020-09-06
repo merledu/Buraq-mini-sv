@@ -1,13 +1,13 @@
-module SRAM_64x64_1P(DATA,ADDR,CSb,WEb,OEb,clk);
-   parameter DATA_WIDTH = 64 ;
-   parameter ADDR_WIDTH = 6 ;
+module SRAM_32x16384_1P(DATA,ADDR,CSb,WEb,OEb,clk);
+   parameter DATA_WIDTH = 32 ;
+   parameter ADDR_WIDTH = 14 ;
    parameter RAM_DEPTH = 1 << ADDR_WIDTH;
    parameter DELAY = 3 ;
    inout [DATA_WIDTH-1:0] DATA;
    input [ADDR_WIDTH-1:0] ADDR;
    input CSb;             // active low chip select
    input WEb;             // active low write control
-   input OEb;             // active output enable
+   input OEb;             // active low output enable
    input clk;             // clock
    reg [DATA_WIDTH-1:0] data_out ;
    reg [DATA_WIDTH-1:0] mem [0:RAM_DEPTH-1];
