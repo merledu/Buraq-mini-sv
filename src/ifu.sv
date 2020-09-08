@@ -79,7 +79,7 @@ end
 assign PC = PC_reg;
 assign inst_mem_address  = PC[16:2];
 //////////////////////////////////////////////////////
-Stall_Controller Staller(idu_stall,ieu_stall,ifu_stall);//    Stalling Module
+stall_controller Staller(idu_stall,ieu_stall,ifu_stall);//    Stalling Module
 //////////////////////////////////////////////////////
     always@(posedge brq_clk)begin
         if(brq_rst)begin
