@@ -19,7 +19,7 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module Stall_Controller
+module stall_controller
 (
     input [1:0]idu_stall,
     input ldst_stall,    
@@ -30,4 +30,4 @@ always_comb begin
     stall = (ldst_stall | idu_stall[1] | idu_stall[0]) ? 1'b1 : 1'b0;
 end
 
-endmodule: Stall_Controller
+endmodule: stall_controller

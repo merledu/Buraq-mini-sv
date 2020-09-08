@@ -19,7 +19,7 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module IEU #(
+module ieu #(
 parameter DataWidth=32,
 parameter AddrWidth=10,
 parameter RegAddrWidth=5
@@ -146,4 +146,4 @@ always @(posedge brq_clk)begin
     end
 end
 
-endmodule:IEU
+endmodule:ieu

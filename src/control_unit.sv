@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module Control_Unit (
+module control_unit (
     input [6:0] opcode,
     output logic branch_op,memRead,memtoReg,memWrite,regWriteEn,operand_B_sel,
     output logic [1:0] next_PC_sel,operand_A_sel, 
@@ -73,4 +73,4 @@ module Control_Unit (
                            (opcode == JAL)?     2'b10 : 
                            (opcode == JALR)?    2'b11 : 2'b00; 
                                                       
-endmodule:Control_Unit
+endmodule:control_unit

@@ -21,7 +21,7 @@
 
 `define Multipilcation
 
-module ALU#(parameter DataWidth=32)
+module alu#(parameter DataWidth=32)
 (
     input [DataWidth-1:0]operand_A,
     input [DataWidth-1:0]operand_B,
@@ -80,4 +80,4 @@ assign ALU_result = mul ? (mulh ? mul_upper : mul_lower) : ALU_result_32 ;
  //assign branch_op = ALU_Control[4:3]; 
  //assign branch = ((branch_op == 2'b10)&& (ALU_result == 1'b1))? 1'b1: 1'b0;    
   
-endmodule:ALU
+endmodule:alu

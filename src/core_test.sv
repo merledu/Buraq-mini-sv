@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-module Core_test();
+module core_test();
 
 parameter DataWidth=32;
 parameter AddrWidth=15;
@@ -29,4 +29,4 @@ end
         #1 clock = ~clock;  // timescale is 1ns so #5 provides 100MHz clock
     end
 
-endmodule 
+endmodule:core_test

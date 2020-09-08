@@ -19,7 +19,7 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module UnConditional_Forwarding#
+module unconditional_forwarding#
 (
 parameter DataWidth = 32, 
 parameter RegAddrWidth = 5
@@ -83,4 +83,4 @@ always_comb begin
         Operand_B_control = 4'b0000;
 end
 
-endmodule: UnConditional_Forwarding
+endmodule:unconditional_forwarding

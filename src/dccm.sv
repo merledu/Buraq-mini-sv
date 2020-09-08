@@ -19,7 +19,7 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module DCCM#(
+module dccm#(
 parameter DataWidth=32,
 parameter AddrWidth=15
 )
@@ -83,4 +83,4 @@ always@(*) begin
 if (read_enable)
   data_out <=  memory[address];
 end
-endmodule : DCCM
+endmodule:dccm

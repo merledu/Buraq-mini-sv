@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module Reg_File#(
+module reg_file#(
 parameter DataWidth=32,
 parameter Registers=32,
 parameter AddrRegWidth=5
@@ -67,4 +67,4 @@ assign readData1 = regFile[source1];
 assign readData2 = regFile[source2];
 
 assign Reg_Out   = regFile[15];
-endmodule:Reg_File
+endmodule:reg_file

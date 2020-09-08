@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module WBU#(
+module wbu#(
 parameter DataWidth=32,
 parameter RegAddrWidth=10
 )
@@ -42,4 +42,4 @@ end
 
 assign wbu_addr_dst = ldst_addr_dst;
 
-endmodule:WBU
+endmodule:wbu

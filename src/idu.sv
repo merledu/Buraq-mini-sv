@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module IDU#(
+module idu#(
 parameter DataWidth=32,
 parameter RegAddrWidth=5
 )
@@ -247,4 +247,4 @@ Branch_Controller_Unit#(DataWidth) Branch_Controller_Unit
 
 assign idu_branch = Branch_control_unit & Branch_controller;
 
-endmodule:IDU
+endmodule:idu

@@ -21,7 +21,7 @@
 
 `define Multipilcation
 
-module ALU_Control
+module alu_control
 (
     input [2:0]func3,
     input [6:0] func7,
@@ -57,4 +57,4 @@ always_comb begin
        `endif
                6'b000_000;      // load/store    (addition)
  end
-endmodule:ALU_Control
+endmodule:alu_control

@@ -19,7 +19,7 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module LDST#(
+module ldst#(
 parameter DataWidth = 32,
 parameter RegAddrWidth = 5,
 parameter AddrWidth = 15
@@ -121,4 +121,4 @@ always @ (posedge brq_clk)begin
         ldst_regfile_en <= ieu_regfile_en;
     end
 end
-endmodule: LDST
+endmodule:ldst

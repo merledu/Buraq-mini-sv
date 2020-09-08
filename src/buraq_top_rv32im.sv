@@ -19,7 +19,7 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module Buraq_Top_RV32IM #(
+module buraq_top_rv32im #(
 parameter DataWidth=32,
 parameter AddrWidth=15,
 parameter RegAddrWidth=5
@@ -79,8 +79,4 @@ ICCM#(DataWidth,AddrWidth)InstructionMemory
     .readData(Ins_mem_out)    
 );
 
-<<<<<<< HEAD
-endmodule: Buraq_Top_RV32IM
-=======
-endmodule: Buraq_Top_RV32IM
->>>>>>> 8d2c8cf1fff13e00f915160ae8dc0100200f9a06
+endmodule:buraq_top_rv32im
