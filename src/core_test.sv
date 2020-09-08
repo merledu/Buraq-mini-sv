@@ -9,7 +9,7 @@ parameter AddrWidth=15;
     logic  reset;
     logic  [DataWidth-1:0]Reg_Out;
     
-Buraq_Top_RV32IM core(
+buraq_top_rv32im core(
 
     .brq_clk(clock),
     .brq_rst(reset),

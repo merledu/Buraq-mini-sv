@@ -83,7 +83,7 @@ logic ldst_regfile_en;
 logic ldst_memtoreg,idu_stall;
                                      ///********INSTANTIATING MODULES********///
 
-IFU#(DataWidth,AddrWidth) Fetch_unit
+ifu #(DataWidth,AddrWidth) Fetch_unit
 (
      .brq_clk(brq_clk),
      .brq_rst(brq_rst),
@@ -103,7 +103,7 @@ IFU#(DataWidth,AddrWidth) Fetch_unit
      .ifu_fetch_inst(ifu_fetch_inst)
 );
 
-IDU #(DataWidth,RegAddrWidth) Decode_unit
+idu #(DataWidth,RegAddrWidth) Decode_unit
 (
      .brq_clk(brq_clk),
      .brq_rst(brq_rst),
@@ -152,7 +152,7 @@ IDU #(DataWidth,RegAddrWidth) Decode_unit
      .RegOut(reg_out)
 );
 
-IEU #(DataWidth,AddrWidth,RegAddrWidth) Execute_unit
+ieu #(DataWidth,AddrWidth,RegAddrWidth) Execute_unit
 (
      .brq_clk(brq_clk),
      .brq_rst(brq_rst),
@@ -194,7 +194,7 @@ IEU #(DataWidth,AddrWidth,RegAddrWidth) Execute_unit
      .ieu_store_data(ieu_store_data)
 );
 
-LDST #(DataWidth,RegAddrWidth)MEM_WB_REG      // *MEM_WB_REG*
+ldst #(DataWidth,RegAddrWidth)MEM_WB_REG      // *MEM_WB_REG*
 (
      .brq_clk(brq_clk),
      .brq_rst(brq_rst),
@@ -221,7 +221,7 @@ LDST #(DataWidth,RegAddrWidth)MEM_WB_REG      // *MEM_WB_REG*
      .ldst_regfile_en(ldst_regfile_en)
 );
 
-WBU #(DataWidth,RegAddrWidth) WriteBack_unit
+wbu #(DataWidth,RegAddrWidth) WriteBack_unit
 ( 
      .ldst_addr_dst(ldst_addr_dst),
      .ldst_memtoreg(ldst_memtoreg),

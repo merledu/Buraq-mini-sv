@@ -148,7 +148,7 @@ always @(posedge brq_clk)begin
     end
 end
 ////////////////////////////////////////////////////////////////////
-Reg_File #(DataWidth,No_of_registers,RegAddrWidth) RegisterFile
+reg_file #(DataWidth,No_of_registers,RegAddrWidth) RegisterFile
      (
         .brq_clk(brq_clk),
         .brq_rst(brq_rst),
@@ -163,7 +163,7 @@ Reg_File #(DataWidth,No_of_registers,RegAddrWidth) RegisterFile
         .Reg_Out(RegOut)
      );
 
-Control_Unit Control (
+control_unit Control (
         .opcode(opcode),
          //OUTPUTS//
         .branch_op(Branch_control_unit),
@@ -178,7 +178,7 @@ Control_Unit Control (
         .extend_sel(ImmSel)
     );
 
-Imm_Gen #(DataWidth) ImmediateGeneration
+imm_gen #(DataWidth) ImmediateGeneration
     (
         .pc(ifu_pc),
         .instruction(instruction_imm),
@@ -199,7 +199,7 @@ assign instruction_imm = Instruction[31:7];
 assign idu_jalr_addr = (ImmOUT + SOURCE_A) & 32'hfffffffe;
 
 /////////////////////////////////////////////////////////
-UnConditional_Forwarding#(DataWidth,RegAddrWidth) Forwarding_4_Control_Hazard
+unconditional_forwarding #(DataWidth,RegAddrWidth) Forwarding_4_Control_Hazard
 (   
      .Reg_File_EN_Memory_stage(regEN_MEM),
      .Reg_File_EN_WrBk_stage(regEN_WB),
@@ -236,7 +236,7 @@ check_stall = (op_A_sel==4'b0100 || op_B_sel==4'b0100) ? 2'b01:
               (ldst_resume | wb_resume) ? 2'b00 : 2'b00;
 end
 
-Branch_Controller_Unit#(DataWidth) Branch_Controller_Unit
+branch_controller_unit #(DataWidth) Branch_Controller_Unit
 ( 
     .func3(func3),
     .SRC_1(SOURCE_A),

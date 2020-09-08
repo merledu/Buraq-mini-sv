@@ -66,7 +66,7 @@ logic [DataWidth-1:0]SOURCE_B;
 logic [5:0]ALU_MUX_CONTROL;
 logic [AddrWidth-1:0]Mem_addr;
 
-ALU #(DataWidth)alu
+alu #(DataWidth)alu
 (
     .operand_A(SRC_A),  
     .operand_B(SRC_B),
@@ -74,7 +74,7 @@ ALU #(DataWidth)alu
     .ALU_result(ieu_alu_result)
 );
 
-ALU_Control aluControl
+alu_control aluControl
 (
     .func3(idu_func3),
     .func7(idu_func7),
@@ -82,7 +82,7 @@ ALU_Control aluControl
     .ALU_Control(ALU_MUX_CONTROL)
 );
 
-Forwarding_Unit#(DataWidth,RegAddrWidth) Forwarding_For_Data_Hazard
+forwarding_unit #(DataWidth,RegAddrWidth) Forwarding_For_Data_Hazard
 (   
      .Reg_File_EN_Memory_stage(ieu_regfile_en),  
      .Reg_File_EN_WrBk_stage(ldst_regfile_en),

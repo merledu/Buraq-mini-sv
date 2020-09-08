@@ -40,7 +40,7 @@ logic [2:0]byte_en;
 logic D_mem_readEn;
 logic D_mem_writeEn;
 
-Buraq_RV32IM#(DataWidth,AddrWidth,RegAddrWidth)Core
+buraq_rv32im #(DataWidth,AddrWidth,RegAddrWidth)Core
 (
         .brq_clk(brq_clk),
         .brq_rst(brq_rst),
@@ -56,7 +56,7 @@ Buraq_RV32IM#(DataWidth,AddrWidth,RegAddrWidth)Core
         .reg_out(Reg_Out)
 );
 
-DCCM#(DataWidth,AddrWidth)DataMemory
+dccm #(DataWidth,AddrWidth)DataMemory
 (
         .brq_clk(brq_clk),
         .byte_enable(byte_en),
@@ -68,7 +68,7 @@ DCCM#(DataWidth,AddrWidth)DataMemory
         .data_out(D_mem_out)
 );
 
-ICCM#(DataWidth,AddrWidth)InstructionMemory
+iccm #(DataWidth,AddrWidth)InstructionMemory
 (
     .brq_clk(brq_clk),
     .address(Ins_mem_addr_in), 
