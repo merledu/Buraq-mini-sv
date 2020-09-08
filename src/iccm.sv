@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module ICCM#(
+module iccm#(
 parameter DataWidth=32,
 parameter AddrWidth=15
 )(
@@ -81,4 +81,4 @@ end
      if(i_read) 
          readData <= memory_array[address];
 end     
-endmodule: ICCM
+endmodule:iccm

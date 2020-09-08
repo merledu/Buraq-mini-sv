@@ -19,7 +19,7 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module Imm_Gen#(
+module imm_gen#(
 parameter DataWidth=32
 )
 (
@@ -51,4 +51,4 @@ always_comb begin
     uj_type = {UJ_type[20]  ? 11'h7FF   : 11'd0,UJ_type} + pc;
 end
 
-endmodule:Imm_Gen
+endmodule:imm_gen

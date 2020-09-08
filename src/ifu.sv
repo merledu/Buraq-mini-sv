@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module IFU #(
+module ifu #(
 parameter DataWidth=32,
 parameter AddrWidth=15
 )
@@ -100,4 +100,5 @@ Stall_Controller Staller(idu_stall,ieu_stall,ifu_stall);//    Stalling Module
         end    
     end  
 
-endmodule:IFU
+endmodule:ifu
+

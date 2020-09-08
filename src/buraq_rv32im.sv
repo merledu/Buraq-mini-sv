@@ -19,7 +19,7 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module Buraq_RV32IM #(
+module buraq_rv32im #(
 parameter DataWidth=32,
 parameter AddrWidth=15,
 parameter RegAddrWidth=5
@@ -232,4 +232,4 @@ WBU #(DataWidth,RegAddrWidth) WriteBack_unit
      .wbu_addr_dst(wbu_addr_dst)
 );
 
-endmodule:Buraq_RV32IM
+endmodule:buraq_rv32im

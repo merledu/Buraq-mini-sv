@@ -19,7 +19,7 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module Branch_Controller_Unit#(parameter DataWidth=32)
+module branch_controller_unit#(parameter DataWidth=32)
 (
     input [2:0]func3,
     input [DataWidth-1:0]SRC_1,
@@ -53,4 +53,4 @@ always_comb begin
         Branch =1'b0;
 end
 
-endmodule: Branch_Controller_Unit
+endmodule: branch_controller_unit

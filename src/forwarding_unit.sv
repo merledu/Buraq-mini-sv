@@ -19,7 +19,7 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module Forwarding_Unit#
+module forwarding_unit#
 (
 parameter DataWidth = 32, 
 parameter RegAddrWidth = 5
@@ -65,4 +65,4 @@ always_comb begin
         Operand_B_control = 3'b000;
 end
 
-endmodule: Forwarding_Unit
+endmodule:forwarding_unit
